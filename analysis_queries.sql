@@ -23,10 +23,10 @@ WHERE rnk<=3;
 
 Monthly Revenue
 
-SELECT DATE_FORMAT(order_date,'%Y-%m') AS month,
-SUM(amount) revenue
+SELECT substr(order_date,1,7) AS month,
+       SUM(amount) AS revenue
 FROM Orders
-GROUP BY month;
+GROUP BY substr(order_date,1,7);
 
 Payment Success Rate
 
@@ -41,3 +41,4 @@ SELECT order_date,
 amount,
 SUM(amount) OVER(ORDER BY order_date) running_revenue
 FROM Orders;
+
